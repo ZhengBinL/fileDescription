@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo1</title>
+    <script src="./jquery-3.3.1.min.js"></script>
+</head>
+<style>
+    .btnAll{
+        display: none;
+    }
+    ul li{
+        list-style: none;
+        float: left;
+    }
+    .wh{
+        width: 100px;
+        height:100px;
+        border:1px solid #ddd;
+        /* position: relative */
+    }
+</style>
+<body>
+    <div>
+        <div>
+            <div id="content">
+                
+            </div>
+            <ul id="btnAll" class="btnAll">
+                <li>
+                    <button id="dele">*</button>
+                </li>
+                <li>
+                    <button id="btnAddWord">添加文字</button>   
+                </li>
+                <li>
+                    <button id="btnAddPop">添加图片</button>
+                    <input type="file"  id="file1"   style="display: none;" />
+                </li>
+                <li>
+                    <button id="btnAddVio">添加视屏</button>
+                    <input type="file"  id="file2"   style="display: none;" />
+                </li>
+                <li>
+                    <button id="btnAddFro">添加引用</button>
+                </li>
+                <li>
+                    <button id="btnAddRes">添加结论</button>   
+                </li>
+            </ul>
+            <button class="btnAdd">添加内容模块</button>
+        </div>
+    </div>
+
+    
+    <script>
+        //添加内容模块显示隐藏
+        $(".btnAdd").click(function(){
+            $("#btnAll").removeClass("btnAll")
+            $(".btnAdd").addClass("btnAll")
+        })
+        $("#dele").click(function(){
+            $("#btnAll").addClass("btnAll")
+            $(".btnAdd").removeClass("btnAll")
+        })
+        //添加图片
+        $("#btnAddPop").click(function(){
+            $("#file1").click()
+        })
+        var n=1;
+        $("#file1").change(function(){
+            var contentImg = document.getElementById("content")
+            var divImg = document.createElement('div')//创建div
+            var divImgId = 'showImg'+n
+            divImg.id = divImgId;//给div加Id
+            divImg.className = 'wh';//给div加类
+            contentImg.appendChild(divImg)
+            var oImg=document.createElement('img');//创建img
+            var showImg = document.getElementById(divImgId);
+            showImg.appendChild(oImg)
+            var url = window.URL.createObjectURL(this.files.item(0))
+            oImg.src = url;
+            n++
+
+            var btnhtml = "<button class='btnAdd'>添加内容模块</button>"
+            showImg.appendChild(btnhtml)
+            $("#btnAll").addClass("btnAll")
+            $(".btnAdd").removeClass("btnAll")
+        })
+    </script>
+</body>
+</html>
