@@ -14,43 +14,25 @@
 <!--<textarea id="content" cols="50" rows="5">AAAAAAA <font color='red'>BBBBBBB</font> AAAAAAA CCCCCCC</textarea>-->
 <!--<input type="button" id="wrapText" value="加粗"/>-->
 <div contenteditable="true" class='ones'></div>
-<button class='clicks'>click</button>
+<button class='clicks' data-com='bold' onclick="changeStyle(this.dataset)">click</button>
 <script src='./jquery-3.3.1.min.js'></script>
-<!-- <script>
-    var txt,star,end;
-$('.ones').mouseup(function () {
-    // console.log($(this).text())
-    if(window.getSelection){
-         txt = window.getSelection().toString();
-         star=window.getSelection().anchorOffset
-         end=window.getSelection().focusOffset;
-    }
-    return [txt,star,end]
-    // if (txt.toString().length > 1) {
-    //     alert(txt);
-    // }
-})
 
-    $('.clicks').click(function () {
-console.log($('.ones').html())
-        console.log(txt)
-        console.log(star)
-        console.log(end)
-        console.log($('.ones').html().indexOf(txt))
-        // console.log($('.ones').text().substr(0,star))
-        let html=$('.ones').text().substr(0,star)+'<b>'+txt+'</b>'+$('.ones').text().substr(end)
-        console.log(html)
-        $('.ones').html(html)
-
-    })
-</script> -->
 <script>
+    // const changeStyle = (data) => {
+    //     console.log(data,'data')
+    //     data.value? document.execCommand(data.com, false, data.value):document.execCommand(data.com, false, null)
+    // }
+    const changeStyle = (data) => {
+        document.execCommand(data.com, false, null)
+    }
+</script>
+<!-- <script>
     $('.clicks').click(function(){
         // 获取选择
         var sel  = window.getSelection();
         // 获取选择的文字
         var txt = sel.getRangeAt(0).extractContents().textContent;
-        txt = txt.replace(/↵/g,"<br/>");
+        
         // 选择范围
         range = sel.getRangeAt(0);
         // 删除被选择的内容
@@ -62,7 +44,7 @@ console.log($('.ones').html())
         // 在被选择的位置添加加粗的元素
         range.insertNode(bold);
     })
-</script>
+</script> -->
 <!--<script type="text/javascript">-->
     <!--var selectionStart, selectionEnd;-->
     <!--var textarea = document.getElementById("content");-->

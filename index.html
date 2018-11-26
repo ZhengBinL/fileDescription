@@ -112,6 +112,7 @@
             document.getElementById("file4").click()
         }
         document.getElementById('file1').onchange =function(){
+            
             var url = window.URL.createObjectURL(this.files.item(0))
             oImg1.src = url;
         }
