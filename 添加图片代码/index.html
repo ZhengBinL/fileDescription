@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .wh{
+        width: 100px;
+        height:100px;
+        border:1px solid #ddd;
+        /* position: relative */
+    }
+    .wh400{
+        width: 400px;
+        height:400px
+    }
+    img{
+        width: 50px;
+        height: 50px;
+    }
+</style>
+<body>
+
+    <div>
+        <div>
+            <span>文章类型</span>
+            <select name="" id="">
+                <option value="1">图书</option>
+                <option value="2">文字</option>
+                <option value="3">简介</option>
+            </select>
+        </div>
+        <div>
+            <input type="text" placeholder="在此输入标题，长度6-30个文字">
+            <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+        </div>
+        <div class=".wh400">
+            <div id="showImg1" class="wh">
+                    <!--<input type="file"  id="file1"   style="display: none;" />-->
+            </div>
+            <div id="showImg2" class="wh">
+                    <!--<input type="file"  id="file2"   style="display: none;" />-->
+            </div>
+            <div id="showImg3" class="wh">
+                    <!--<input type="file"  id="file3"   style="display: none;" />-->
+            </div>
+        </div>
+        <div>
+            <input type="text" placeholder="在此输入标题，长度6-30个文字">
+        </div>
+        <div>
+            <span>*</span>
+            <div >
+                    <button id="showImg4">添加视屏</button>
+                    <input type="file"  id="file4"   style="display: none;" />
+            </div>
+            <!-- <button id="addWord">添加文字</button>
+            <button id="addPop">添加图片</button>
+            <button id="addVio">添加视屏</button>
+            <button id="addFor">添加引用</button>
+            <button id="addOrd">添加结论</button> -->
+        </div>
+        <div id="content">
+
+        </div>
+    </div>
+    <script src=jquery-3.3.1.min.js></script>
+    <script>
+        let id=0;
+        $('.wh').on('click',function () {
+            console.log(1)
+                id++;
+            let inputs=$('<input type="file"  id="file_'+id+'"   style="display: none;" />')
+            $(this).html(inputs)
+               console.log($(this).find('input'))
+                clicks($(this).find('input'))
+                change($(this).find('input'),$(this))
+
+
+            // console.log($(this).find('input'))
+
+
+        })
+        function clicks(a) {
+            console.log(a.length)
+           return a.click()
+            // if(a.length==1){
+            //     a.click()
+            // }
+        }
+        function change(input,obj) {
+            console.log(input,obj)
+            return input.change(function () {
+                let url = window.URL.createObjectURL(this.files.item(0))
+                let img=$('<img src="'+url+'" />')
+                // console.log(url)
+                obj.append(img)
+            })
+        }
+    </script>
+    <script>
+        //在一个元素后面插入一个元素
+        // function insertAfter(newElement, targentElement) {
+        //     var parent = targentElement.parentNode;
+        //     if (parent.lastChild == targentElement) {
+        //         parent.appendChild(newElement);
+        //     } else {
+        //         parent.insertBefore(newElement, targentElement.nextSibling)
+        //     }
+        // }
+        // var _this = this;
+        // document.getElementById("addPop").onclick = function(){
+        //     console.log()
+        //     if(document.getElementById("content").children.length>0){
+        //         var node3=document.createElement("li");
+        //         var textnode3=document.createTextNode("li");
+        //         node3.appendChild(textnode3);
+        //         _this.insertAfter(node3,document.getElementById("content").lastElementChild)
+        //     }else{
+        //         var node=document.createElement("p");
+        //         var textnode=document.createTextNode("p");
+        //         node.appendChild(textnode);
+        //         document.getElementById("content").appendChild(node)
+        //     }
+        // }
+    </script>
+    <script>
+        // var oImg1=document.createElement('img');
+        // var oImg2=document.createElement('img');
+        // var oImg3=document.createElement('img');
+        // var showImg1 = document.getElementById("showImg1");
+        // var showImg2 = document.getElementById("showImg2");
+        // var showImg3 = document.getElementById("showImg3");
+        // showImg1.appendChild(oImg1);
+        // showImg2.appendChild(oImg2);
+        // showImg3.appendChild(oImg3);
+        // document.getElementsByClassName('wh')[0].onclick=function(){
+        //     document.getElementById("file").click()
+        // }
+        //
+        // document.getElementById('showImg1').onclick = function(){
+        //     document.getElementById("file1").click()
+        // }
+        // document.getElementById('showImg2').onclick = function(){
+        //     document.getElementById("file2").click()
+        // }
+        // document.getElementById('showImg3').onclick = function(){
+        //     document.getElementById("file3").click()
+        // }
+        // document.getElementById('showImg4').onclick = function(){
+        //     document.getElementById("file4").click()
+        // }
+        // document.getElementById('file1').onchange =function(){
+        //     var url = window.URL.createObjectURL(this.files.item(0))
+        //     oImg1.src = url;
+        // }
+        // document.getElementById('file2').onchange =function(){
+        //     var url = window.URL.createObjectURL(this.files.item(0))
+        //     oImg2.src = url;
+        // }
+        // document.getElementById('file3').onchange =function(){
+        //     var url = window.URL.createObjectURL(this.files.item(0))
+        //     oImg3.src = url;
+        // }
+        // document.getElementById('file4').onchange =function(){
+        //     console.log(this)
+        //     console.log(this.files.item(0))
+        //     console.log(this.files)
+        //     var node4 = document.createElement("div");
+        //     var oImg4 = document.createElement('img');
+        //     node4.className = 'wh';
+        //     node4.id = 'showImg4'
+        //     var showImg4 = document.getElementById("showImg4");
+        //         showImg4.appendChild(oImg4);
+        //         document.getElementById("content").appendChild(showImg4)
+        //
+        //         var url = window.URL.createObjectURL(this.files.item(0))
+        //     oImg4.src = url;
+        //     // var url = window.URL.createObjectURL(this.files.item(0))
+        //     // oImg3.src = url;
+        // }
+    </script>
+</body>
+</html>

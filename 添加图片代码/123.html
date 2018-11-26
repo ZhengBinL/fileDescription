@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>js实现textarea选中文字并加粗</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <style>
+        .ones{
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+<!--<textarea id="content" cols="50" rows="5">AAAAAAA <font color='red'>BBBBBBB</font> AAAAAAA CCCCCCC</textarea>-->
+<!--<input type="button" id="wrapText" value="加粗"/>-->
+<div contenteditable="true" class='ones'></div>
+<button class='clicks'>click</button>
+<script src='./jquery-3.3.1.min.js'></script>
+<!-- <script>
+    var txt,star,end;
+$('.ones').mouseup(function () {
+    // console.log($(this).text())
+    if(window.getSelection){
+         txt = window.getSelection().toString();
+         star=window.getSelection().anchorOffset
+         end=window.getSelection().focusOffset;
+    }
+    return [txt,star,end]
+    // if (txt.toString().length > 1) {
+    //     alert(txt);
+    // }
+})
+
+    $('.clicks').click(function () {
+console.log($('.ones').html())
+        console.log(txt)
+        console.log(star)
+        console.log(end)
+        console.log($('.ones').html().indexOf(txt))
+        // console.log($('.ones').text().substr(0,star))
+        let html=$('.ones').text().substr(0,star)+'<b>'+txt+'</b>'+$('.ones').text().substr(end)
+        console.log(html)
+        $('.ones').html(html)
+
+    })
+</script> -->
+<script>
+    $('.clicks').click(function(){
+        // 获取选择
+        var sel  = window.getSelection();
+        // 获取选择的文字
+        var txt = sel.getRangeAt(0).extractContents().textContent;
+        txt = txt.replace(/↵/g,"<br/>");
+        // 选择范围
+        range = sel.getRangeAt(0);
+        // 删除被选择的内容
+        range.deleteContents();
+        // 创建新的元素 strong
+        var bold = document.createElement("strong");
+        // 设置 strong 内容
+        bold.innerHTML = txt;
+        // 在被选择的位置添加加粗的元素
+        range.insertNode(bold);
+    })
+</script>
+<!--<script type="text/javascript">-->
+    <!--var selectionStart, selectionEnd;-->
+    <!--var textarea = document.getElementById("content");-->
+
+    <!--document.onkeyup = document.onmouseup = function(event){-->
+        <!--event = event || window.event;-->
+        <!--var keyCode = event.keyCode || event.which;-->
+
+        <!--var userSelection;-->
+        <!--if (window.getSelection) { //现代浏览器-->
+            <!--userSelection = window.getSelection();-->
+        <!--} else if (document.selection) { //IE浏览器 考虑到Opera，应该放在后面-->
+            <!--userSelection = document.selection.createRange();-->
+        <!--}-->
+
+        <!--var getRangeIndex = function(selectionObject) {-->
+            <!--if (window.getSelection)-->
+                <!--return [textarea.selectionStart, textarea.selectionEnd];-->
+            <!--else { // 较老版本Safari!-->
+                <!--var range               = document.selection.createRange();             //对选择的文字create Range-->
+                <!--// var selectText          = range.text;                                //选中的文字-->
+                <!--var selectTextLength    = range.text.length;                            //选中文字长度-->
+                <!--textarea.select();                                                      //textarea全选-->
+                <!--//StartToStart、StartToEnd、EndToStart、EndToEnd-->
+                <!--range.setEndPoint("StartToStart", document.selection.createRange());    //指针移动到选中文字开始-->
+                <!--var selectTextPosition  = range.text.length;                            //选中文字的结束位置-->
+                <!--range.collapse(false);                                                  //将插入点移动到当前范围的开始-->
+                <!--range.moveEnd("character", -selectTextLength);   //更改范围的结束位置，减去长度，字符开始位置，character不能改-->
+                <!--range.moveEnd("character", selectTextLength);   //再更改范围的结束位置，到字符结束位置-->
+                <!--range.select();                                                         //然后选中字符-->
+
+                <!--//返回字符的开始和结束位置-->
+                <!--return [selectTextPosition - selectTextLength, selectTextPosition];-->
+            <!--}-->
+        <!--}-->
+
+        <!--var rangeIndex = getRangeIndex(userSelection);-->
+        <!--selectionStart = rangeIndex[0];-->
+        <!--selectionEnd   = rangeIndex[1];-->
+    <!--};-->
+
+    <!--//加粗  (斜体,等都在此操作,那么如何解除加粗和斜体呢)-->
+    <!--document.getElementById('wrapText').onclick = function(){-->
+        <!--console.log( textarea.value.substring(selectionStart, selectionEnd))-->
+        <!--textarea.value = textarea.value.substring(0, selectionStart)-->
+            <!--+ '<b>' + textarea.value.substring(selectionStart, selectionEnd)-->
+            <!--+ '</b>' + textarea.value.substring(selectionEnd);-->
+    <!--};-->
+
+    <!--//注：关于textRange方法的部分注释根据个人理解写的，有异议欢迎提出-->
+
+    <!--//参考文档：-->
+    <!--//1. 《通过 JavaScript 获取和设置光标在输入框中的位置（兼容 IE 及 Firefox）》 http://www.2cto.com/kf/201112/115328.html-->
+    <!--//2. 《JS Range HTML文档/文字内容选中、库及应用介绍》 http://www.zhangxinxu.com/wordpress/2011/04/js-range-html%E6%96%87%E6%A1%A3%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E9%80%89%E4%B8%AD%E3%80%81%E5%BA%93%E5%8F%8A%E5%BA%94%E7%94%A8%E4%BB%8B%E7%BB%8D/-->
+    <!--//3. 《详探TextRange对象&#45;&#45;查找与选择》 http://www.cnblogs.com/sweting/archive/2009/07/12/1521782.html-->
+<!--</script>-->
+</body>
+</html>
