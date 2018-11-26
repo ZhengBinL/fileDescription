@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo2</title>
+    <script src="./jquery-3.3.1.min.js"></script>
+</head>
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+    .btnAll{
+        display: none;
+    }
+	
+    ul li{
+        list-style: none;
+        float: left;
+    }
+    .wh{
+        width: 100px;
+        height:100px;
+        border:1px solid #ddd;
+        /* position: relative */
+    }
+	img{
+	width:200px;
+	height: 150px;
+	}
+	.btns-box{
+		overflow: hidden;
+		margin-bottom: 10px;
+	}
+	.img{
+		width:200px;
+		height: 150px;
+		border:1px solid #DDDDDD;
+		}
+	.area{
+		width:200px;
+		display: block;
+	}
+	.module{
+		margin-bottom: 10px;
+	}
+</style>
+<body>
+    <div>
+        <div class='btns-box'>
+			<button class="btnAdd" id='first-add'>添加内容模块</button>
+
+            <ul class="btnAll" id='first-btn'>
+                <li>
+                    <button id="btnAddWord">添加文字</button>   
+                </li>
+                <li>
+                    <button id="btnAddPop">添加图片</button>
+                    <input type="file"  id="file1"   style="display: none;" />
+                </li>
+                <li>
+                    <button id="btnAddVio">添加视屏</button>
+                    <input type="file"  id="file2"   style="display: none;" />
+                </li>
+                <li>
+                    <button id="btnAddFro">添加引用</button>
+                </li>
+                <li>
+                    <button id="btnAddRes">添加结论</button>   
+                </li>
+            </ul>
+        </div>
+		<div class='content' id='cont'>
+		</div>
+		
+    </div>
+
+    <script>
+		var html=''
+		$('#first-add').on('click',function(){
+			$(this).hide()
+			$('#first-btn').show()
+		})
+		$('#first-btn button').on('click',function(){//这个btns-box第一次添加的时候会显示出来,以后添加就和这个没关系了
+			$(this).parents('#first-btn').hide()//点击了添加类型以后这个btns-box元素就隐藏了,以后的点击添加都是每一个模块自带的添加
+			if($(this).text()=='添加文字'){
+				// 添加文字模块
+				console.log($(this).text())
+				let html="<div class='module'><textarea class='area'>添加文字</textarea>"+
+				"<button class='btnAdd'>添加内容模块</button>"+
+				"<ul class='btnModule' style='display: none;'>"+
+					"<li>"+
+						"<button class='btn'>添加文字</button>   "+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加图片</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加视屏</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加引用</button>"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加结论</button>  "+
+					"</li>"+
+				"</ul></div>"
+				console.log(html)
+				$('#cont').append(html)
+			}else if($(this).text()=='添加图片'){
+				html="<div class='module'><div  id='clsImg"+n+"'></div>"+
+				"<textarea class='area'>图片</textarea>"+
+				"<button class='btnAdd'>添加内容模块</button>"+
+				"<ul class='btnModule' style='display: none;'>"+
+					"<li>"+
+						"<button class='btn'>添加文字</button>   "+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加图片</button>"+
+						"<input type='file' id='file"+n+"'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加视屏</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加引用</button>"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加结论</button>  "+
+					"</li>"+
+				"</ul></div>"
+				$("#file1").click()				
+			}else if($(this).text()=='添加视屏'){
+				// 添加视屏模块
+			console.log($(this).text())
+			let html="<div class='module'><div class='img'>视屏</div>"+
+			"<textarea class='area'>视屏</textarea>"+
+			"<button class='btnAdd'>添加内容模块</button>"+
+			"<ul class='btnModule' style='display: none;'>"+
+				"<li>"+
+					"<button class='btn'>添加文字</button>   "+
+				"</li>"+
+				"<li>"+
+					"<button class='btn'>添加图片</button>"+
+					"<input type='file'  style='display: none;' />"+
+				"</li>"+
+				"<li>"+
+					"<button class='btn'>添加视屏</button>"+
+					"<input type='file'  style='display: none;' />"+
+				"</li>"+
+				"<li>"+
+					"<button class='btn'>添加引用</button>"+
+				"</li>"+
+				"<li>"+
+					"<button class='btn'>添加结论</button>  "+
+				"</li>"+
+			"</ul></div>"
+			console.log(html)
+			$('#cont').append(html)
+				
+			}else if($(this).text()=='添加引用'){
+				// 添加引用
+				console.log($(this).text())
+				let html="<div class='module'><textarea class='area'>添加引用</textarea>"+
+				"<button class='btnAdd'>添加内容模块</button>"+
+				"<ul class='btnModule' style='display: none;'>"+
+					"<li>"+
+						"<button class='btn'>添加文字</button>   "+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加图片</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加视屏</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加引用</button>"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加结论</button>  "+
+					"</li>"+
+				"</ul></div>"
+				console.log(html)
+				$('#cont').append(html)
+				
+			}else if($(this).text()=='添加结论'){
+				// 添加结论
+				console.log($(this).text())
+				let html="<div class='module'><textarea class='area'>添加结论</textarea>"+
+				"<button class='btnAdd'>添加内容模块</button>"+
+				"<ul class='btnModule' style='display: none;'>"+
+					"<li>"+
+						"<button class='btn'>添加文字</button>   "+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加图片</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加视屏</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加引用</button>"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加结论</button>  "+
+					"</li>"+
+				"</ul></div>"
+				console.log(html)
+				$('#cont').append(html)
+				
+			}
+		})
+		$('#cont').on('click','.btnAdd',function(){//用代理的方式添加点击事件,要是直接给.btnadd添加点击事件是不好用的
+			$(this).hide()//点击了添加模块的按钮后自己先隐藏,然后把添加那个类型的btnModule这个dom元素显示出来
+			$(this).next('.btnModule').show()
+		})
+		$('#cont').on('click','.btnModule button',function(){//给btnModule下面的所有的button添加点击事件,也是通过代理的方式添加的
+			$(this).parents('.btnModule').hide()//把这个btnModule元素隐藏,然后把添加模块按钮显示
+			$(this).parents('.btnModule').prev('.btnAdd').show()
+			//再次判断要添加什么模块
+			if($(this).text()=='添加文字'){
+				// 添加文字模块
+				console.log($(this).text())
+				let html="<div class='module'><textarea class='area'>添加文字</textarea>"+
+				"<button class='btnAdd'>添加内容模块</button>"+
+				"<ul class='btnModule' style='display: none;'>"+
+					"<li>"+
+						"<button class='btn'>添加文字</button>   "+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加图片</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加视屏</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加引用</button>"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加结论</button>  "+
+					"</li>"+
+				"</ul></div>"
+				console.log(html)
+				$('#cont').append(html)
+			}else if($(this).text()=='添加图片'){
+				// 添加图片模块
+				console.log($(this).text())
+				let html="<div class='module'><div class='img'>图片</div>"+
+				"<textarea class='area'>图片</textarea>"+
+				"<button class='btnAdd'>添加内容模块</button>"+
+				"<ul class='btnModule' style='display: none;'>"+
+					"<li>"+
+						"<button class='btn'>添加文字</button>   "+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加图片</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加视屏</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加引用</button>"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加结论</button>  "+
+					"</li>"+
+				"</ul></div>"
+				console.log(html)
+				$('#cont').append(html)
+				
+			}else if($(this).text()=='添加视屏'){
+				// 添加视屏模块
+			console.log($(this).text())
+			let html="<div class='module'><div class='img'>视屏</div>"+
+			"<textarea class='area'>视屏</textarea>"+
+			"<button class='btnAdd'>添加内容模块</button>"+
+			"<ul class='btnModule' style='display: none;'>"+
+				"<li>"+
+					"<button class='btn'>添加文字</button>   "+
+				"</li>"+
+				"<li>"+
+					"<button class='btn'>添加图片</button>"+
+					"<input type='file'  style='display: none;' />"+
+				"</li>"+
+				"<li>"+
+					"<button class='btn'>添加视屏</button>"+
+					"<input type='file'  style='display: none;' />"+
+				"</li>"+
+				"<li>"+
+					"<button class='btn'>添加引用</button>"+
+				"</li>"+
+				"<li>"+
+					"<button class='btn'>添加结论</button>  "+
+				"</li>"+
+			"</ul></div>"
+			console.log(html)
+			$('#cont').append(html)
+				
+			}else if($(this).text()=='添加引用'){
+				// 添加引用
+				console.log($(this).text())
+				let html="<div class='module'><textarea class='area'>添加引用</textarea>"+
+				"<button class='btnAdd'>添加内容模块</button>"+
+				"<ul class='btnModule' style='display: none;'>"+
+					"<li>"+
+						"<button class='btn'>添加文字</button>   "+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加图片</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加视屏</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加引用</button>"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加结论</button>  "+
+					"</li>"+
+				"</ul></div>"
+				console.log(html)
+				$('#cont').append(html)
+				
+			}else if($(this).text()=='添加结论'){
+				// 添加结论
+				console.log($(this).text())
+				let html="<div class='module'><textarea class='area'>添加结论</textarea>"+
+				"<button class='btnAdd'>添加内容模块</button>"+
+				"<ul class='btnModule' style='display: none;'>"+
+					"<li>"+
+						"<button class='btn'>添加文字</button>   "+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加图片</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加视屏</button>"+
+						"<input type='file'  style='display: none;' />"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加引用</button>"+
+					"</li>"+
+					"<li>"+
+						"<button class='btn'>添加结论</button>  "+
+					"</li>"+
+				"</ul></div>"
+				console.log(html)
+				$('#cont').append(html)
+				
+			}
+		})
+	</script>
+    <script>
+        //添加内容模块显示隐藏
+        // $(".btnAdd").click(function(){
+        //     $("#btnAll").removeClass("btnAll")
+        //     $(".btnAdd").addClass("btnAll")
+        // })
+        // $("#dele").click(function(){
+        //     $("#btnAll").addClass("btnAll")
+        //     $(".btnAdd").removeClass("btnAll")
+        // })
+        // //添加图片
+        // $("#btnAddPop").click(function(){
+        //     $("#file1").click()
+        // })
+        var n=1;
+        $("#file1").change(function(){
+			var oImg=document.createElement('img');//创建img
+				oImg.id='img'+n
+			$('clsImg'+n).append(oImg)
+            var url = window.URL.createObjectURL(this.files.item(0))
+            oImg.src = url;
+			$('#cont').append(html)
+			console.log(oImg)
+			console.log(url)
+
+            n++
+        })
+    </script>
+</body>
+</html>
